@@ -1,0 +1,104 @@
+.container {
+	width: 960px;
+	padding: 12px;
+	margin: 0 auto;
+}
+
+.totem-action {
+	border: 1px solid;
+	border-radius: 5px;
+	font-family: monospace;
+	margin: 10px 0;
+}
+
+.totem-action.get {
+	background: #e7f0f7;
+	border-color: #aecce4;
+}
+
+.totem-action.post {
+    background: #e7f6ec;
+	border-color: #afe1c0;
+}
+
+.method {
+	display: inline-block;
+	padding: 0 10px;
+	font-size: 14px;
+	color: white;
+	border-radius: 5px;
+	line-height: 33px;
+	width: 40px;
+	text-align: center;
+}
+
+.post .method {
+	background-color: #04a73a;
+}
+
+.get .method {
+	background-color: #0061ac;
+}
+
+.name {
+	display: inline-block;
+	font-size: 16px;
+}
+
+.route {
+	display: inline-block;
+	font-size: 14px;
+	color: #777;
+}
+
+.totem-action .header:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+	cursor: pointer;
+}
+
+.body {
+	display: none;
+	font-size: 16px;
+	font-family: "Times New Roman", Georgia, Serif;
+}
+
+.request {
+    margin: 10px;
+}
+
+.response {
+    margin: 10px;
+    padding: 5px;
+    white-space: pre;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    font-family: monospace;
+    font-size: 10px;
+    display: none;
+}
+
+.table-parameters-col-param {
+	width: 20%;
+	text-align: left;
+}
+
+.table-parameters-col-value {
+	width: 20%;
+	text-align: left;
+}
+
+.table-parameters-col-type {
+	width: 15%;
+	text-align: left;
+}
+
+.table-parameters-col-loc {
+	width: 15%;
+	text-align: left;
+}
+			
+			.table-parameters-col-desc {
+				width: 30%;
+				text-align: left;
+			}
