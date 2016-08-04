@@ -58,14 +58,16 @@ class PlayerController(BaseController):
         self.request.end_headers()
         self.request.wfile.write(bytes(json.dumps(self.getPlayerStatus(), indent=4), 'UTF-8'))
         
-    def getPlayerStatus(self):
+    def getPlayerStatus(self):    
         status = {
             "current_time": self.player.props.current_time,
             "stream_length": self.player.props.stream_length,
             "state": self.player.props.playing,
             "volume": self.player.get_volume(),
             "display_name": self.player.props.current_display_name,
-            "fullscreen": self.player.props.fullscreen
+            "fullscreen": self.player.props.fullscreen,
+            "mrl": self.player.props.current_mrl,
+            "content_type": self.player.props.current_content_type
         }
         
         return status

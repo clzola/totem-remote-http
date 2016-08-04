@@ -61,7 +61,7 @@ class TotemRemoteHttpRequestHandler(SimpleHTTPRequestHandler):
         for route in routes:
             self.__router.addRoute(route['regexp'], route['controller'], route['action'])
             
-        BaseHTTPRequestHandler.__init__(self, request, client_address, server)
+        SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
 
     def do_GET(self):            
         request_components = urlparse(self.path)
