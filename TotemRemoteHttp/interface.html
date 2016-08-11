@@ -1,519 +1,156 @@
-<!doctype html>
+<!DOCTYPE html>
 
-<html>
-	<head>
-	    <meta charset='utf-8'>
-		<title>TotemRemoteHttp Interface</title>
-		<link rel="icon" type="image/png" href="/favicon-96x96.png"/>
-		<link rel="stylesheet" type="text/css" href="/totem.css"/>
-	</head>
-	
-	<body>
-		<main class="container">
-			<h1>TotemRemoteHttp Interface</h1>
-			<div class="totem-action get" id="actionStatus">
-				<div class="header">
-					<div class="method">GET</div>
-					<div class="name">Status</div>
-					<div class="route">/status</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Retrieves status of currently playing video.<br/><br/>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-			<div class="totem-action get" id="actionHash">
-				<div class="header">
-					<div class="method">GET</div>
-					<div class="name">OpenSubtitles Hash</div>
-					<div class="route">/hash</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Computes hash of currently playing file in based on algorithm listen on OpenSubtitles.org.<br/><br/>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-			<div class="totem-action post" id="actionVolume">
-				<div class="header">
-					<div class="method">POST</div>
-					<div class="name">Volume</div>
-					<div class="route">/volume/{value}</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Sets new volume value.<br/><br/>
-						<table>
-							<thead>
-								<tr>
-									<th class="table-parameters-col-param">Parameter</th>
-									<th class="table-parameters-col-value">Value</th>
-									<th class="table-parameters-col-type">Type</th>
-									<th class="table-parameters-col-loc">Location</th>
-									<th class="table-parameters-col-desc">Description</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>value</td>
-									<td><input style="width: 90%;" type="number" min="0" max="1" step="0.01" name="volume-parameter-value"/></td>
-									<td>float</td>
-									<td>route</td>
-									<td>New volume value. Value can be between 0 and 1 inclusive</td>
-								</tr>
-							</tbody>
-						</table>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-			<div class="totem-action post" id="actionForward">
-				<div class="header">
-					<div class="method">POST</div>
-					<div class="name">Forward</div>
-					<div class="route">/forward</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Move forward through video stream by 60 seconds.<br/><br/>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-			<div class="totem-action post" id="actionBackward">
-				<div class="header">
-					<div class="method">POST</div>
-					<div class="name">Backward</div>
-					<div class="route">/backward</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Move backward through video stream by 15 seconds.<br/><br/>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-			<div class="totem-action post" id="actionSeek">
-				<div class="header">
-					<div class="method">POST</div>
-					<div class="name">Seek</div>
-					<div class="route">/seek/{time}</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Position at exact location of video stream from beginning.<br/><br/>
-						<table>
-							<thead>
-								<tr>
-									<th class="table-parameters-col-param">Parameter</th>
-									<th class="table-parameters-col-value">Value</th>
-									<th class="table-parameters-col-type">Type</th>
-									<th class="table-parameters-col-loc">Location</th>
-									<th class="table-parameters-col-desc">Description</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>time</td>
-									<td><input style="width: 90%;" type="number" name="seek-parameter-time"/></td>
-									<td>long</td>
-									<td>route</td>
-									<td>Location in video stream in milliseconds from begining of video stream.</td>
-								</tr>
-							</tbody>
-						</table>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-			<div class="totem-action post" id="actionToggleFullscreen">
-				<div class="header">
-					<div class="method">POST</div>
-					<div class="name">Toggle Fullscreen</div>
-					<div class="route">/toggle/fullscreen</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Toggles fullscreen mode.<br/><br/>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-			<div class="totem-action post" id="actionPlaylistNext">
-				<div class="header">
-					<div class="method">POST</div>
-					<div class="name">Next Video/Chapter</div>
-					<div class="route">/playlist/next</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Play next video in playlist.<br/><br/>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-			<div class="totem-action post" id="actionPlaylistPrevious">
-				<div class="header">
-					<div class="method">POST</div>
-					<div class="name">Previous Video/Chapter</div>
-					<div class="route">/playlist/previous</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Play previous video in playlist.<br/><br/>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-			<div class="totem-action post" id="actionPlayPause">
-				<div class="header">
-					<div class="method">POST</div>
-					<div class="name">Play / Pause</div>
-					<div class="route">/playpause</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Plays/Pauses video.<br/><br/>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-			<div class="totem-action post" id="actionRemote">
-				<div class="header">
-					<div class="method">POST</div>
-					<div class="name">Remote Command</div>
-					<div class="route">/remote/{command}</div>
-				</div>
-				<div class="body">
-					<div class="request">
-						Executes remote command.<br/><br/>
-						<table>
-							<thead>
-								<tr>
-									<th class="table-parameters-col-param">Parameter</th>
-									<th class="table-parameters-col-value">Value</th>
-									<th class="table-parameters-col-type">Type</th>
-									<th class="table-parameters-col-loc">Location</th>
-									<th class="table-parameters-col-desc">Description</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>command</td>
-									<td>
-									    <select style="width: 90%;" name="remote-parameter-command">
-									        <option value="PLAY">PLAY</option>
-									        <option value="PAUSE">PAUSE</option>
-									        <option value="STOP">STOP</option>
-									        <option value="PLAY_PAUSE">PLAY_PAUSE</option>
-									        <option value="NEXT">NEXT</option>
-									        <option value="PREVIOUS">PREVIOUS</option>
-									        <option value="SEEK_FORWARD">SEEK_FORWARD</option>
-									        <option value="SEEK_BACKWARD">SEEK_BACKWARD</option>
-									        <option value="VOLUME_UP">VOLUME_UP</option>
-									        <option value="VOLUME_DOWN">VOLUME_DOWN</option>
-									        <option value="FULLSCREEN">FULLSCREEN</option>
-									        <option value="QUIT">QUIT</option>
-									        <option value="UP">UP</option>
-									        <option value="DOWN">DOWN</option>
-									        <option value="LEFT">LEFT</option>
-									        <option value="RIGHT">RIGHT</option>
-									        <option value="MUTE">MUTE</option>
-									    </select>
-									</td>
-									<td>string</td>
-									<td>query</td>
-									<td>Name of command.</td>
-								</tr>
-							</tbody>
-						</table>
-						<button class="tryButton">Try it</button>
-					</div>
-					<div class="response"></div>
-				</div>
-			</div>
-		</main>
-		
-		<script type="text/javascript" src="jquery-3.1.0.min.js"></script>
-		
-		<script type="text/javascript">
-		    function onTotemActionHeaderClick(event) {
-		        $(this).parent().find(".body").slideToggle();
-		    }
-		    
-		    function actionStatus() {
-		        $.get("/status", null, function(data, textStatus, jqXHR) {
-		            $("#actionStatus .response").show().html(jqXHR.responseText);
-		        });
-		    }
-		    
-		    function actionVolume() {
-		        var value = $("input[name=volume-parameter-value]").val();
-                $.post("/volume/" + value, null, function(data, textStatus, jqXHR) {
-                    $("#actionVolume .response").show().html(jqXHR.responseText);
+<html style="height: 100%;">
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body style="padding: 16px; position: relative; height: 100%">
+        <span id="totemTitleLabel" style="font-size: 48dp; word-wrap: break-word;">Movie Title</span>
+        
+        <div style="margin-top: 50px; margin-bottom: 50px;">
+            <div style="text-align: center;">
+                 <a id="volumeUpButton" class="btn-floating btn-large waves-effect waves-light" style="background-color: #33b5e5 !important">
+                    <i class="material-icons">volume_up</i>
+                 </a>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 4px;">
+                 <a id="backwardButton" class="btn-floating btn-large waves-effect waves-light" style="background-color: #21B684 !important;">
+                    <i class="material-icons">fast_rewind</i>
+                 </a>
+                 <a id="playPauseButton" class="btn-floating btn-large waves-effect waves-light" style="background-color: #21B684 !important; margin: 4px">
+                    <i class="material-icons">play_arrow</i>
+                 </a>
+                 <a id="forwardButton" class="btn-floating btn-large waves-effect waves-light" style="background-color: #21B684 !important;">
+                    <i class="material-icons">fast_forward</i>
+                 </a>
+            </div>
+            
+            <div style="text-align: center;">
+                 <a id="volumeDownButton" class="btn-floating btn-large waves-effect waves-light" style="background-color: #33b5e5 !important">
+                    <i class="material-icons">volume_down</i>
+                 </a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a id="toggleFullscreenButton" class="waves-effect waves-light btn grey lighten-3" style="color: black;">TOGGLE FULLSCREEN</a>
+            </div>
+        </div>
+        
+        <footer style="width: 100%; bottom: 12px;">
+            <div class="row">
+                <div class="col s12" style="text-align: center; padding: 0;">
+                    <!--
+                    <p class="range-field" style="margin-bottom: 0px;">
+                        <input type="range" id="totemTimelapse" min="0" max="100" />
+                    </p>
+                    -->
+                    <span id="totemCurrentTime"></span> / <span id="totemTotalTime"></span>
+                </div>
+            <div>
+        </footer>
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+        <script type="text/javascript">
+            var totem = null;
+        
+            function getStatus() {
+                $.get("/status", null, function(response) {
+                    updateDisplay(response);
                 });
-		    }
-		    
-		    function actionForward() {
-		        $.post("/forward", null, function(data, textStatus, jqXHR) {
-		            $("#actionForward .response").show().html(jqXHR.responseText);
-		        });
-		    }
-		    
-		    function actionBackward() {
-		        $.post("/backward", null, function(data, textStatus, jqXHR) {
-		            $("#actionBackward .response").show().html(jqXHR.responseText);
-		        });
-		    }
-		    
-		    function actionSeek() {
-		        var time = $("input[name=seek-parameter-time]").val();
-                $.post("/seek/" + time, null, function(data, textStatus, jqXHR) {
-                    $("#actionSeek .response").show().html(jqXHR.responseText);
+            }
+            
+            function secondsToHms(d) {
+                d = Number(d);
+                var h = Math.floor(d / 3600);
+                var m = Math.floor(d % 3600 / 60);
+                var s = Math.floor(d % 3600 % 60);
+                return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); 
+            }
+        
+            $(document).ready(function() {
+                totem = new Totem();
+                //getStatus();
+                setInterval(getStatus, 1000);
+            });
+            
+            var Totem = function() {
+                this._titleLabel = $("#totemTitleLabel");
+                //this._timelapse = $("#totemTimelapse");
+                this._currentTimeLabel = $("#totemCurrentTime");
+                this._totalTimeLabel = $("#totemTotalTime");
+                this._volumeUpButton = $("#volumeUpButton");
+                this._volumeDownButton = $("#volumeDownButton");
+                this._forwardButton = $("#forwardButton");
+                this._backwardButton = $("#backwardButton");
+                this._playPauseButton = $("#playPauseButton");
+                this._toggleFullscreenButton = $("#toggleFullscreenButton");
+                
+                this._volumeUpButton.click(function() {
+                    $.post("/remote/VOLUME_UP", null, updateDisplay);
                 });
-		    }
-		    
-		    function actionToggleFullscreen() {
-		        $.post("/toggle/fullscreen", null, function(data, textStatus, jqXHR) {
-		            $("#actionToggleFullscreen .response").show().html(jqXHR.responseText);
-		        });
-		    }
-		    
-		    function actionPlaylistNext() {
-		        $.post("/playlist/next", null, function(data, textStatus, jqXHR) {
-		            $("#actionPlaylistNext .response").show().html(jqXHR.responseText);
-		        });
-		    }
-		    
-		    function actionPlaylistPrevious() {
-		        $.post("/playlist/previous", null, function(data, textStatus, jqXHR) {
-		            $("#actionPlaylistPrevious .response").show().html(jqXHR.responseText);
-		        });
-		    }
-		    
-		    function actionPlayPause() {
-		        $.post("/playpause", null, function(data, textStatus, jqXHR) {
-		            $("#actionPlayPause .response").show().html(jqXHR.responseText);
-		        });
-		    }
-		    
-		    function actionRemote() {
-		        var command = $("select[name=remote-parameter-command]").val()
-		        $.post("/remote/" + command, null, function(data, textStatus, jqXHR) {
-		            $("#actionRemote .response").show().html(jqXHR.responseText);
-		        });
-		    }
-		    
-		    function actionHash() {
-		        $.post("/hash", null, function(data, textStatus, jqXHR) {
-		            $("#actionHash .response").show().html(jqXHR.responseText);
-		        });
-		    }
-		
-		    $(document).ready(function() {
-		        $(".header").click(onTotemActionHeaderClick);
-		        $("#actionStatus .tryButton").click(actionStatus);
-		        $("#actionVolume .tryButton").click(actionVolume);
-		        $("#actionForward .tryButton").click(actionForward);
-		        $("#actionBackward .tryButton").click(actionBackward);
-		        $("#actionSeek .tryButton").click(actionSeek);
-		        $("#actionToggleFullscreen .tryButton").click(actionToggleFullscreen);
-		        $("#actionPlaylistNext .tryButton").click(actionPlaylistNext);
-		        $("#actionPlaylistPrevious .tryButton").click(actionPlaylistPrevious);
-		        $("#actionPlayPause .tryButton").click(actionPlayPause);
-		        $("#actionRemote .tryButton").click(actionRemote);
-		        $("#actionHash .tryButton").click(actionHash);
-		    });
-		/*
-			function onTotemHeaderClick(event) {
-				this.parentNode.children[1].classList.toggle("active");
-			}
-			
-			function onStatusAction() {
-			    var xmlHttp = new XMLHttpRequest();
-			    xmlHttp.open("GET", "/status", true);
-			    xmlHttp.onreadystatechange = function() {
-			        if( xmlHttp.readyState === 4 ) {
-			            if( xmlHttp.status === 200 ) {
-			                var response = document.querySelector("#actionStatus .response");
-			                response.innerHTML = xmlHttp.response;
-			                response.style.display = "block";
-			            }
-			        }
-			    }
-			    
-			    xmlHttp.send();
-			}
-			
-			function onVolumeAction() {
-			    var xmlHttp = new XMLHttpRequest();
-			    var value = document.querySelector("#actionVolume input[name=volume-parameter-value]").value;
-			    
-			    xmlHttp.open("POST", "/volume?value=" + value, true);
-			    xmlHttp.onreadystatechange = function() {
-			        if( xmlHttp.readyState === 4 ) {
-			            if( xmlHttp.status === 200 ) {
-			                var response = document.querySelector("#actionVolume .response");
-			                response.innerHTML = xmlHttp.response;
-			                response.style.display = "block";
-			            }
-			        }
-			    }
-			    
-			    xmlHttp.send();
-			}
-			
-			function onForwardAction() {
-			    var xmlHttp = new XMLHttpRequest();			    
-			    xmlHttp.open("POST", "/forward", true);
-			    xmlHttp.onreadystatechange = function() {
-			        if( xmlHttp.readyState === 4 ) {
-			            if( xmlHttp.status === 200 ) {
-			                var response = document.querySelector("#actionForward .response");
-			                response.innerHTML = xmlHttp.response;
-			                response.style.display = "block";
-			            }
-			        }
-			    }
-			    
-			    xmlHttp.send();
-			}
-			
-			function onBackwardAction() {
-			    var xmlHttp = new XMLHttpRequest();			    
-			    xmlHttp.open("POST", "/backward", true);
-			    xmlHttp.onreadystatechange = function() {
-			        if( xmlHttp.readyState === 4 ) {
-			            if( xmlHttp.status === 200 ) {
-			                var response = document.querySelector("#actionBackward .response");
-			                response.innerHTML = xmlHttp.response;
-			                response.style.display = "block";
-			            }
-			        }
-			    }
-			    
-			    xmlHttp.send();
-			}
-			
-			function onSeekAction() {
-			    var xmlHttp = new XMLHttpRequest();
-			    var value = document.querySelector("#actionSeek input[name=seek-parameter-value]").value;
-			    
-			    xmlHttp.open("POST", "/seek?value=" + value, true);
-			    xmlHttp.onreadystatechange = function() {
-			        if( xmlHttp.readyState === 4 ) {
-			            if( xmlHttp.status === 200 ) {
-			                var response = document.querySelector("#actionSeek .response");
-			                response.innerHTML = xmlHttp.response;
-			                response.style.display = "block";
-			            }
-			        }
-			    }
-			    
-			    xmlHttp.send();
-			}
-			
-			function onToggleFullscreenAction() {
-			    var xmlHttp = new XMLHttpRequest();			    
-			    xmlHttp.open("POST", "/toggle/fullscreen", true);
-			    xmlHttp.onreadystatechange = function() {
-			        if( xmlHttp.readyState === 4 ) {
-			            if( xmlHttp.status === 200 ) {
-			                var response = document.querySelector("#actionToggleFullscreen .response");
-			                response.innerHTML = xmlHttp.response;
-			                response.style.display = "block";
-			            }
-			        }
-			    }
-			    
-			    xmlHttp.send();
-			}
-			
-			function onNextVideoAction() {
-			    var xmlHttp = new XMLHttpRequest();			    
-			    xmlHttp.open("POST", "/playlist/next", true);
-			    xmlHttp.onreadystatechange = function() {
-			        if( xmlHttp.readyState === 4 ) {
-			            if( xmlHttp.status === 200 ) {
-			                var response = document.querySelector("#actionNextVideo .response");
-			                response.innerHTML = xmlHttp.response;
-			                response.style.display = "block";
-			            }
-			        }
-			    }
-			    
-			    xmlHttp.send();
-			}
-			
-			function onPreviousVideoAction() {
-			    var xmlHttp = new XMLHttpRequest();			    
-			    xmlHttp.open("POST", "/playlist/previous", true);
-			    xmlHttp.onreadystatechange = function() {
-			        if( xmlHttp.readyState === 4 ) {
-			            if( xmlHttp.status === 200 ) {
-			                var response = document.querySelector("#actionPreviousVideo .response");
-			                response.innerHTML = xmlHttp.response;
-			                response.style.display = "block";
-			            }
-			        }
-			    }
-			    
-			    xmlHttp.send();
-			}
-			
-			function onPlayPauseAction() {
-			    var xmlHttp = new XMLHttpRequest();			    
-			    xmlHttp.open("POST", "/playpause", true);
-			    xmlHttp.onreadystatechange = function() {
-			        if( xmlHttp.readyState === 4 ) {
-			            if( xmlHttp.status === 200 ) {
-			                var response = document.querySelector("#actionPlayPause .response");
-			                response.innerHTML = xmlHttp.response;
-			                response.style.display = "block";
-			            }
-			        }
-			    }
-			    
-			    xmlHttp.send();
-			}
-			
-			function onRemoteAction() {
-			    var xmlHttp = new XMLHttpRequest();	
-			    var command = document.querySelector("#actionRemote select[name=remote-parameter-value]").value
-			    
-			    xmlHttp.open("POST", "/remote/"+command, true);
-			    xmlHttp.onreadystatechange = function() {
-			        if( xmlHttp.readyState === 4 ) {
-			            if( xmlHttp.status === 200 ) {
-			                var response = document.querySelector("#actionRemote .response");
-			                response.innerHTML = xmlHttp.response;
-			                response.style.display = "block";
-			            }
-			        }
-			    }
-			    
-			    xmlHttp.send();
-			}
-		
-			window.onload = function() {
-				var headers = document.getElementsByClassName("header");
-				for(var i=0; i<headers.length; i++)
-					headers[i].addEventListener("click", onTotemHeaderClick);
-			}
-		*/
-		</script>
-	</body>
+                
+                this._volumeDownButton.click(function() {
+                    $.post("/remote/VOLUME_DOWN", null, updateDisplay);
+                });
+                
+                this._forwardButton.click(function() {
+                    $.post("/forward", null, updateDisplay);
+                });
+                
+                this._backwardButton.click(function() {
+                    $.post("/backward", null, updateDisplay);
+                });
+                
+                this._playPauseButton.click(function() {
+                    $.post("/playpause", null, updateDisplay);
+                });
+                
+                this._toggleFullscreenButton.click(function() {
+                    $.post("/toggle/fullscreen", null, updateDisplay);
+                });
+              
+            }
+            
+            Totem.prototype.setTitle = function(title) {
+                this._titleLabel.html(title);
+            }
+            
+            Totem.prototype.setCurrentTimeLabel = function(time) {
+                this._currentTimeLabel.html(time);
+            }
+            
+            Totem.prototype.setTotalTimeLabel = function(time) {
+                this._totalTimeLabel.html(time);
+            }
+            
+
+            
+            function updateDisplay(data) {
+                totem.setTitle(data.display_name);
+                totem.setCurrentTimeLabel(secondsToHms(data.current_time / 1000));
+                totem.setTotalTimeLabel(secondsToHms(data.stream_length / 1000));
+                //totem._timelapse.attr("max", data.stream_length)
+                //totem._timelapse.val(data.current_time)
+                
+                if( data.state )
+                    totem._playPauseButton.find("i").html("pause")
+                else totem._playPauseButton.find("i").html("play_arrow")  
+                
+                if( data.fullscreen ) 
+                    totem._toggleFullscreenButton.removeClass("grey lighten-3")
+                else
+                    totem._toggleFullscreenButton.addClass("grey lighten-3")
+            }
+        </script>
+    </body>
 </html>

@@ -77,6 +77,7 @@ class TotemRemoteHttpRequestHandler(SimpleHTTPRequestHandler):
         routes = [
             {'regexp': r'^/$', 'controller': 'InterfaceController', 'action': 'actionIndex'},
             {'regexp': r'^/interface$', 'controller': 'InterfaceController', 'action': 'actionIndex'},
+            {'regexp': r'^/api$', 'controller': 'InterfaceController', 'action': 'actionApi'},
             {'regexp': r'^/hello$', 'controller': 'InterfaceController', 'action': 'actionHello'},
             {'regexp': r'^/status$', 'controller': 'PlayerController', 'action': 'actionStatus'},
             {'regexp': r'^/volume/([0-9\.]+)$', 'controller': 'PlayerController', 'action': 'actionVolume'},

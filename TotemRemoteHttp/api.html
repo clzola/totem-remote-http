@@ -1,0 +1,342 @@
+<!doctype html>
+
+<html>
+	<head>
+	    <meta charset='utf-8'>
+		<title>TotemRemoteHttp Interface</title>
+		<link rel="icon" type="image/png" href="/favicon-96x96.png"/>
+		<link rel="stylesheet" type="text/css" href="/totem.css"/>
+	</head>
+	
+	<body>
+		<main class="container">
+			<h1>TotemRemoteHttp Interface</h1>
+			<div class="totem-action get" id="actionStatus">
+				<div class="header">
+					<div class="method">GET</div>
+					<div class="name">Status</div>
+					<div class="route">/status</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Retrieves status of currently playing video.<br/><br/>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+			<div class="totem-action get" id="actionHash">
+				<div class="header">
+					<div class="method">GET</div>
+					<div class="name">OpenSubtitles Hash</div>
+					<div class="route">/hash</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Computes hash of currently playing file in based on algorithm listen on OpenSubtitles.org.<br/><br/>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+			<div class="totem-action post" id="actionVolume">
+				<div class="header">
+					<div class="method">POST</div>
+					<div class="name">Volume</div>
+					<div class="route">/volume/{value}</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Sets new volume value.<br/><br/>
+						<table>
+							<thead>
+								<tr>
+									<th class="table-parameters-col-param">Parameter</th>
+									<th class="table-parameters-col-value">Value</th>
+									<th class="table-parameters-col-type">Type</th>
+									<th class="table-parameters-col-loc">Location</th>
+									<th class="table-parameters-col-desc">Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>value</td>
+									<td><input style="width: 90%;" type="number" min="0" max="1" step="0.01" name="volume-parameter-value"/></td>
+									<td>float</td>
+									<td>route</td>
+									<td>New volume value. Value can be between 0 and 1 inclusive</td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+			<div class="totem-action post" id="actionForward">
+				<div class="header">
+					<div class="method">POST</div>
+					<div class="name">Forward</div>
+					<div class="route">/forward</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Move forward through video stream by 60 seconds.<br/><br/>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+			<div class="totem-action post" id="actionBackward">
+				<div class="header">
+					<div class="method">POST</div>
+					<div class="name">Backward</div>
+					<div class="route">/backward</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Move backward through video stream by 15 seconds.<br/><br/>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+			<div class="totem-action post" id="actionSeek">
+				<div class="header">
+					<div class="method">POST</div>
+					<div class="name">Seek</div>
+					<div class="route">/seek/{time}</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Position at exact location of video stream from beginning.<br/><br/>
+						<table>
+							<thead>
+								<tr>
+									<th class="table-parameters-col-param">Parameter</th>
+									<th class="table-parameters-col-value">Value</th>
+									<th class="table-parameters-col-type">Type</th>
+									<th class="table-parameters-col-loc">Location</th>
+									<th class="table-parameters-col-desc">Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>time</td>
+									<td><input style="width: 90%;" type="number" name="seek-parameter-time"/></td>
+									<td>long</td>
+									<td>route</td>
+									<td>Location in video stream in milliseconds from begining of video stream.</td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+			<div class="totem-action post" id="actionToggleFullscreen">
+				<div class="header">
+					<div class="method">POST</div>
+					<div class="name">Toggle Fullscreen</div>
+					<div class="route">/toggle/fullscreen</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Toggles fullscreen mode.<br/><br/>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+			<div class="totem-action post" id="actionPlaylistNext">
+				<div class="header">
+					<div class="method">POST</div>
+					<div class="name">Next Video/Chapter</div>
+					<div class="route">/playlist/next</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Play next video in playlist.<br/><br/>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+			<div class="totem-action post" id="actionPlaylistPrevious">
+				<div class="header">
+					<div class="method">POST</div>
+					<div class="name">Previous Video/Chapter</div>
+					<div class="route">/playlist/previous</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Play previous video in playlist.<br/><br/>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+			<div class="totem-action post" id="actionPlayPause">
+				<div class="header">
+					<div class="method">POST</div>
+					<div class="name">Play / Pause</div>
+					<div class="route">/playpause</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Plays/Pauses video.<br/><br/>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+			<div class="totem-action post" id="actionRemote">
+				<div class="header">
+					<div class="method">POST</div>
+					<div class="name">Remote Command</div>
+					<div class="route">/remote/{command}</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Executes remote command.<br/><br/>
+						<table>
+							<thead>
+								<tr>
+									<th class="table-parameters-col-param">Parameter</th>
+									<th class="table-parameters-col-value">Value</th>
+									<th class="table-parameters-col-type">Type</th>
+									<th class="table-parameters-col-loc">Location</th>
+									<th class="table-parameters-col-desc">Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>command</td>
+									<td>
+									    <select style="width: 90%;" name="remote-parameter-command">
+									        <option value="PLAY">PLAY</option>
+									        <option value="PAUSE">PAUSE</option>
+									        <option value="STOP">STOP</option>
+									        <option value="PLAY_PAUSE">PLAY_PAUSE</option>
+									        <option value="NEXT">NEXT</option>
+									        <option value="PREVIOUS">PREVIOUS</option>
+									        <option value="SEEK_FORWARD">SEEK_FORWARD</option>
+									        <option value="SEEK_BACKWARD">SEEK_BACKWARD</option>
+									        <option value="VOLUME_UP">VOLUME_UP</option>
+									        <option value="VOLUME_DOWN">VOLUME_DOWN</option>
+									        <option value="FULLSCREEN">FULLSCREEN</option>
+									        <option value="QUIT">QUIT</option>
+									        <option value="UP">UP</option>
+									        <option value="DOWN">DOWN</option>
+									        <option value="LEFT">LEFT</option>
+									        <option value="RIGHT">RIGHT</option>
+									        <option value="MUTE">MUTE</option>
+									    </select>
+									</td>
+									<td>string</td>
+									<td>query</td>
+									<td>Name of command.</td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
+		</main>
+		
+		<script type="text/javascript" src="jquery-3.1.0.min.js"></script>
+		
+		<script type="text/javascript">
+		    function onTotemActionHeaderClick(event) {
+		        $(this).parent().find(".body").slideToggle();
+		    }
+		    
+		    function actionStatus() {
+		        $.get("/status", null, function(data, textStatus, jqXHR) {
+		            $("#actionStatus .response").show().html(jqXHR.responseText);
+		        });
+		    }
+		    
+		    function actionVolume() {
+		        var value = $("input[name=volume-parameter-value]").val();
+                $.post("/volume/" + value, null, function(data, textStatus, jqXHR) {
+                    $("#actionVolume .response").show().html(jqXHR.responseText);
+                });
+		    }
+		    
+		    function actionForward() {
+		        $.post("/forward", null, function(data, textStatus, jqXHR) {
+		            $("#actionForward .response").show().html(jqXHR.responseText);
+		        });
+		    }
+		    
+		    function actionBackward() {
+		        $.post("/backward", null, function(data, textStatus, jqXHR) {
+		            $("#actionBackward .response").show().html(jqXHR.responseText);
+		        });
+		    }
+		    
+		    function actionSeek() {
+		        var time = $("input[name=seek-parameter-time]").val();
+                $.post("/seek/" + time, null, function(data, textStatus, jqXHR) {
+                    $("#actionSeek .response").show().html(jqXHR.responseText);
+                });
+		    }
+		    
+		    function actionToggleFullscreen() {
+		        $.post("/toggle/fullscreen", null, function(data, textStatus, jqXHR) {
+		            $("#actionToggleFullscreen .response").show().html(jqXHR.responseText);
+		        });
+		    }
+		    
+		    function actionPlaylistNext() {
+		        $.post("/playlist/next", null, function(data, textStatus, jqXHR) {
+		            $("#actionPlaylistNext .response").show().html(jqXHR.responseText);
+		        });
+		    }
+		    
+		    function actionPlaylistPrevious() {
+		        $.post("/playlist/previous", null, function(data, textStatus, jqXHR) {
+		            $("#actionPlaylistPrevious .response").show().html(jqXHR.responseText);
+		        });
+		    }
+		    
+		    function actionPlayPause() {
+		        $.post("/playpause", null, function(data, textStatus, jqXHR) {
+		            $("#actionPlayPause .response").show().html(jqXHR.responseText);
+		        });
+		    }
+		    
+		    function actionRemote() {
+		        var command = $("select[name=remote-parameter-command]").val()
+		        $.post("/remote/" + command, null, function(data, textStatus, jqXHR) {
+		            $("#actionRemote .response").show().html(jqXHR.responseText);
+		        });
+		    }
+		    
+		    function actionHash() {
+		        $.post("/hash", null, function(data, textStatus, jqXHR) {
+		            $("#actionHash .response").show().html(jqXHR.responseText);
+		        });
+		    }
+		
+		    $(document).ready(function() {
+		        $(".header").click(onTotemActionHeaderClick);
+		        $("#actionStatus .tryButton").click(actionStatus);
+		        $("#actionVolume .tryButton").click(actionVolume);
+		        $("#actionForward .tryButton").click(actionForward);
+		        $("#actionBackward .tryButton").click(actionBackward);
+		        $("#actionSeek .tryButton").click(actionSeek);
+		        $("#actionToggleFullscreen .tryButton").click(actionToggleFullscreen);
+		        $("#actionPlaylistNext .tryButton").click(actionPlaylistNext);
+		        $("#actionPlaylistPrevious .tryButton").click(actionPlaylistPrevious);
+		        $("#actionPlayPause .tryButton").click(actionPlayPause);
+		        $("#actionRemote .tryButton").click(actionRemote);
+		        $("#actionHash .tryButton").click(actionHash);
+		    });
+		</script>
+	</body>
+</html>

@@ -42,7 +42,8 @@ Response:
 
 ### API
 
-* Interface
+* Web Interface
+* API Interface
 * Status
 * OpenSubtitles Hash
 * Volume
@@ -55,14 +56,23 @@ Response:
 * Play/Pause
 * Remote
 
-#### Interface
+#### Web Interface
 
-Shows player API interface for testing.
+Shows some nice interface for controling video stream.
 
 Route:
 ```
 GET http://[ip_address]:9090/
 GET http://[ip_address]:9090/interface
+```
+
+#### API Interface
+
+Shows player API interface for testing.
+
+Route:
+```
+GET http://[ip_address]:9090/api
 ```
 
 #### Status
