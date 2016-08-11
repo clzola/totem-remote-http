@@ -25,6 +25,20 @@
 					<div class="response"></div>
 				</div>
 			</div>
+			<div class="totem-action get" id="actionHash">
+				<div class="header">
+					<div class="method">GET</div>
+					<div class="name">OpenSubtitles Hash</div>
+					<div class="route">/hash</div>
+				</div>
+				<div class="body">
+					<div class="request">
+						Computes hash of currently playing file in based on algorithm listen on OpenSubtitles.org.<br/><br/>
+						<button class="tryButton">Try it</button>
+					</div>
+					<div class="response"></div>
+				</div>
+			</div>
 			<div class="totem-action post" id="actionVolume">
 				<div class="header">
 					<div class="method">POST</div>
@@ -302,6 +316,12 @@
 		            $("#actionRemote .response").show().html(jqXHR.responseText);
 		        });
 		    }
+		    
+		    function actionHash() {
+		        $.post("/hash", null, function(data, textStatus, jqXHR) {
+		            $("#actionHash .response").show().html(jqXHR.responseText);
+		        });
+		    }
 		
 		    $(document).ready(function() {
 		        $(".header").click(onTotemActionHeaderClick);
@@ -315,6 +335,7 @@
 		        $("#actionPlaylistPrevious .tryButton").click(actionPlaylistPrevious);
 		        $("#actionPlayPause .tryButton").click(actionPlayPause);
 		        $("#actionRemote .tryButton").click(actionRemote);
+		        $("#actionHash .tryButton").click(actionHash);
 		    });
 		/*
 			function onTotemHeaderClick(event) {

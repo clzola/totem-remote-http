@@ -1,5 +1,5 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler, SimpleHTTPRequestHandler
-from gi.repository import GObject, Peas, Totem;
+from gi.repository import GObject, Peas, Totem, Gtk, Gio;
 from threading import Thread
 from urllib.parse import urlparse
 import re, os
@@ -18,11 +18,20 @@ class TotemRemoteHttp(GObject.Object, Peas.Activatable):
         self.server_address = ('', 9090)
         self.server = None
         self.server_thread = None
+        self.window = None
+        self.totem = None
         
     def do_activate (self):
         print('Activating TotemRemoteHttp plugin')
+        self.totem = self.object
+        
+        #action = Gio.SimpleAction.new('totem-remote-http', None)
+        #action.connect('activate', self._show_window)
+        #self.totem.add_action(action)
+        #self._show_window()
+        
         if self.server == None:
-            self.server = TotemRemoteHttpServer(self.server_address, self.object)
+            self.server = TotemRemoteHttpServer(self.server_address, self.totem)
         self.server_thread = Thread(target=self.server.serve_forever)
         self.server_thread.daemon = True
         self.server_thread.start()
@@ -30,6 +39,30 @@ class TotemRemoteHttp(GObject.Object, Peas.Activatable):
     def do_deactivate (self):
         print('Deactivating TotemRemoteHttp plugin')
         self.server.shutdown()
+        if self.window is not None:
+            self.window.destroy()
+            self.window = None
+        
+    def _show_window(self):
+        self.window = Gtk.Window()
+        self.window.set_title('TotemRemoteHttp Settings')
+        self.window.connect('destroy', self._destroy_window)
+        
+        self.window.set_default_size(300, 300)
+        
+        port_label = Gtk.Label()
+        port_label.set_text("Port")
+        self.window.add(port_label)
+        
+        port_input = Gtk.Entry()
+        port_input.set_width_chars(10)
+        self.window.add(port_input)
+        
+        self.window.show_all()
+    
+    def _destroy_window(self, *args):
+        self.window.destroy()
+        self.window = None
  
         
 class TotemRemoteHttpServer(HTTPServer):
@@ -55,6 +88,7 @@ class TotemRemoteHttpRequestHandler(SimpleHTTPRequestHandler):
             {'regexp': r'^/playlist/previous$', 'controller': 'PlayerController', 'action': 'actionPrevious'},
             {'regexp': r'^/playpause$', 'controller': 'PlayerController', 'action': 'actionPlayPause'},
             {'regexp': r'^/remote/([A-Z_]+)$', 'controller': 'PlayerController', 'action': 'actionRemote'},
+            {'regexp': r'^/hash$', 'controller': 'PlayerController', 'action': 'actionHash'},
         ]
         
         self.__router = Router(server, self)

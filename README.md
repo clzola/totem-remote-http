@@ -42,6 +42,19 @@ Response:
 
 ### API
 
+* Interface
+* Status
+* OpenSubtitles Hash
+* Volume
+* Forward
+* Backward
+* Seek
+* Toggle Fullscreen
+* Next Video/Chapter
+* Previous Video/Chapter
+* Play/Pause
+* Remote
+
 #### Interface
 
 Shows player API interface for testing.
@@ -59,6 +72,15 @@ Retrieves status of currently playing video.
 Route:
 ```
 GET http://[ip_address]:9090/staus
+```
+
+#### OpenSubtitles Hash
+
+Computes hash of currently playing video. This hash can be used to search subtitles at opensubtitles.org
+
+Route:
+```
+GET http://[ip_address]:9090/hash
 ```
 
 ##### Volume

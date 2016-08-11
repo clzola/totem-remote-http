@@ -1,6 +1,9 @@
 import json
+from urllib.parse import unquote
 from gi.repository import Totem
 from Controllers.BaseController import BaseController
+from OpenSubtitleHasher import *
+
 
 class PlayerController(BaseController):
     def __init__(self, server, request):
@@ -51,6 +54,22 @@ class PlayerController(BaseController):
         command = Totem.RemoteCommand.__dict__[command]
         self.player.remote_command(command, self.mrl)
         self.dumpPlayerStatus()
+        
+    def actionHash(self):
+        if self.mrl == None:
+            self.request.send_response(404);
+            self.request.send_header('Content-Type', 'text/plain')
+            self.request.end_headers()
+            self.request.wfile.write(bytes('No movie found', 'UTF-8'))
+            return
+            
+        filename = unquote(self.mrl[7:]);
+        filehash = getOpenSubtitleHash(filename)
+    
+        self.request.send_response(200);
+        self.request.send_header('Content-Type', 'text/plain')
+        self.request.end_headers()
+        self.request.wfile.write(bytes(filehash, 'UTF-8'))
 
     def dumpPlayerStatus(self):
         self.request.send_response(200);
