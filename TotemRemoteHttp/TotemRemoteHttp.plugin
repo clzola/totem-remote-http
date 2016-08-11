@@ -5,5 +5,5 @@ IAge=1
 Name=Totem Remote HTTP
 Description=HTTP interface for controlling video stream.
 Authors=Lazar Radinović <lazar.radinovic@gmail.com>
-Copyright=Copyright © 2015 Lazar Radinovic
+Copyright=Copyright © 2016 Lazar Radinović
 Website=https://github.com/clzola/totem-remote-http
