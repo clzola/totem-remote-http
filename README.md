@@ -4,6 +4,7 @@ Providing HTTP interface for controlling [totem video player](https://wiki.gnome
 It has web interface at ```http://localhost:9090/interface```. You can find list of API calls bellow.
 
 ![Web Interface](/Screenshots/web_interface.png)
+![API Interface](/Screenshots/api.png)
 
 ## Instalation
 
